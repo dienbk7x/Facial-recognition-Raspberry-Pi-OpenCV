@@ -4,8 +4,8 @@
 # Edit the values below to configure the training and usage of the
 # face recognition box.
 
-# Pi GPIO port which is connected to the lock servo signal line.
-LOCK_SERVO_PIN = 18
+# Pi GPIO port which is connected to the lock relay pin.
+LOCK_RELAY_PIN = 21
 # Pulse width value (in microseconds) for the servo at the unlocked and locked
 # position.  Center should be a value of 1500, max left a value of 1000, and 
 # max right a value of 2000.
@@ -27,7 +27,7 @@ BUTTON_UP   = True   # High signal
 # Start with a value of 3000, but you might need to tweak this value down if 
 # you're getting too many false positives (incorrectly recognized faces), or up
 # if too many false negatives (undetected faces).
-POSITIVE_THRESHOLD = 2000.0
+POSITIVE_THRESHOLD = 4000.0
 
 # File to save and load face recognizer model.
 TRAINING_FILE = 'training.xml'
@@ -59,7 +59,7 @@ HAAR_MIN_SIZE      = (30, 30)
 DEBUG_IMAGE = 'capture.pgm'
 
 # ID of webcam device. Can use module multiple_camera to test which webcam
-WEBCAM_ID = 1
+WEBCAM_ID = -1
 
 # Number of images for training. Used in capture-positive
 MAX_NUMBER_OF_IMAGES = 200
@@ -67,11 +67,5 @@ MAX_NUMBER_OF_IMAGES = 200
 # Rate at which the webcam will be polled for new images.
 CAPTURE_HZ = 30.0
 
-def get_camera():	
-	# Camera to use for capturing images.
-	# Use this code for capturing from the Pi camera:
-	#import picam
-	#return picam.OpenCVCapture()
-	# Use this code for capturing from a webcam:
-	import webcam
-	return webcam.OpenCVCapture(device_id = WEBCAM_ID)
+# Time out: how long (in seconds) the system is trying to take the photo and check the database
+TIME_OUT = 300

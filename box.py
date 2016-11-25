@@ -17,7 +17,7 @@ if __name__ == '__main__':
 	print 'Training data loaded!'
         time_end = time.time() + 60 * 15
         while time.time() < time_end:
-            #Initialize camera
+            # Initialize camer and box.'	
             ret1, frame1 = camera.read()
             image = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)
             result = face.detect_single(image)
